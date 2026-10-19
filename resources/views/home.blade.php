@@ -1,0 +1,53 @@
+@extends('layouts.app')
+
+@section('title', 'Travel Indo — Perjalanan yang Terasa')
+
+@section('content')
+    <div class="ad-home travel-ad-home">
+        {{-- 01. Hero carousel --}}
+        <section class="ad-hero" id="top">
+            <div class="ad-hero__grain" aria-hidden="true"></div>
+            <div class="ad-hero__gallery" data-hero-gallery role="group" aria-roledescription="carousel" aria-label="Galeri destinasi Travel Indo" tabindex="0">
+                <figure class="ad-hero__slide" data-hero-slide role="group" aria-roledescription="slide" aria-label="1 dari 3"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2200&q=90" alt="Pura dan hutan hijau di Bali"><figcaption>Bali / budaya yang hidup</figcaption></figure>
+                <figure class="ad-hero__slide" data-hero-slide role="group" aria-roledescription="slide" aria-label="2 dari 3"><img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=2200&q=90" alt="Lanskap laut dan pulau di Indonesia"><figcaption>Kepulauan / laut yang tenang</figcaption></figure>
+                <figure class="ad-hero__slide" data-hero-slide role="group" aria-roledescription="slide" aria-label="3 dari 3"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2200&q=90" alt="Danau dan pegunungan"><figcaption>Dataran tinggi / pagi yang sejuk</figcaption></figure>
+            </div>
+            <div class="ad-hero__travel-shade"></div>
+            <div class="shell ad-hero__inner">
+                <p class="ad-overline">TRAVEL INDO / INDONESIA PILIHAN</p>
+                <h1>Indonesia.<br><i>Dengan cara Anda.</i></h1>
+                <p class="ad-hero__copy">Perjalanan yang dirancang untuk memberi ruang: melihat lebih dekat, tinggal lebih lama, dan pulang membawa cerita.</p>
+                <div class="ad-hero__actions"><a class="ad-button" href="#perjalanan">Cari perjalanan <span aria-hidden="true">↗</span></a><a class="ad-text-link ad-text-link--light" href="{{ route('contact') }}">Rencanakan bersama <span aria-hidden="true">→</span></a></div>
+                <div class="ad-hero__points"><span>Rute personal</span><span>Pengalaman lokal</span><span>Untuk sendiri atau bersama</span></div>
+            </div>
+            <div class="ad-hero__tag">Geser untuk melihat<br><b>destinasi lain</b></div>
+            <div class="ad-hero__controls" aria-label="Kontrol galeri hero"><button type="button" data-hero-previous aria-label="Foto sebelumnya">←</button><div role="group" aria-label="Pilih foto"><button type="button" data-hero-dot="0" aria-label="Tampilkan foto 1" aria-current="true"></button><button type="button" data-hero-dot="1" aria-label="Tampilkan foto 2"></button><button type="button" data-hero-dot="2" aria-label="Tampilkan foto 3"></button></div><button type="button" data-hero-next aria-label="Foto berikutnya">→</button></div>
+        </section>
+
+        {{-- 02. About --}}
+        <section class="ad-intro" aria-labelledby="intro-title"><div class="shell ad-intro__grid"><p class="ad-index">01 / TENTANG KAMI</p><div><h2 id="intro-title">Bukan hanya sampai.<br>Tapi <i>benar-benar hadir.</i></h2><p>Travel Indo membantu menyusun perjalanan di Indonesia dari awal hingga akhir. Kami memadukan rute yang realistis, tempat yang berkarakter, dan waktu yang cukup untuk menikmati setiap persinggahan.</p><a class="ad-text-link" href="{{ route('about') }}">Kenal Travel Indo <span aria-hidden="true">↗</span></a></div></div></section>
+
+        {{-- 03. Expertise --}}
+        <section class="ad-expertise" id="layanan" aria-labelledby="expertise-title"><div class="shell"><div class="ad-section-head"><p class="ad-index">02 / SPESIALISASI</p><h2 id="expertise-title">Satu Indonesia.<br><i>Banyak cara menjalaninya.</i></h2></div><div class="ad-expertise__grid">
+            <article><div class="ad-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M8 31c7-1 12-9 15-18 7 4 13 12 17 25M6 38h36M17 26l8-5m-2 8 8-4"/></svg></div><span>01</span><h3>Alam & petualangan</h3><p>Jalur hijau, laut terbuka, gunung, dan perjalanan untuk bergerak sedikit lebih jauh.</p></article>
+            <article><div class="ad-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M9 38h30M13 38V21l11-9 11 9v17M19 38V27h10v11M7 21h34M24 5v7"/></svg></div><span>02</span><h3>Budaya & rasa lokal</h3><p>Temui cerita di balik kota, tradisi, pasar, dapur, dan kehidupan sehari-hari.</p></article>
+            <article><div class="ad-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M8 36c6-10 11-15 16-15s10 5 16 15M14 17a10 10 0 0 1 20 0c0 8-10 15-10 15S14 25 14 17Z"/><circle cx="24" cy="17" r="3"/></svg></div><span>03</span><h3>Rute antarkota</h3><p>Itinerary yang menyambungkan tempat-tempat menarik tanpa melelahkan di jalan.</p></article>
+            <article><div class="ad-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M9 34c4-8 10-12 15-12s11 4 15 12M15 18a9 9 0 1 0 18 0 9 9 0 0 0-18 0ZM7 39h34"/></svg></div><span>04</span><h3>Perjalanan bersama</h3><p>Rencana nyaman untuk keluarga, teman dekat, kantor, atau grup kecil Anda.</p></article>
+            <article><div class="ad-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M12 34 24 8l12 26M17 25h14M9 39h30"/></svg></div><span>05</span><h3>Perjalanan khusus</h3><p>Susun perjalanan dari nol sesuai minat, hari yang tersedia, dan ritme Anda sendiri.</p></article>
+        </div></div></section>
+
+        {{-- 04. Reasons --}}
+        <section class="ad-reasons" aria-labelledby="reasons-title"><div class="shell"><div class="ad-section-head ad-section-head--light"><p class="ad-index">03 / MENGAPA KAMI</p><h2 id="reasons-title">Detail yang diurus,<br><i>supaya Anda bisa hadir.</i></h2></div><div class="ad-reasons__grid"><article><b>01</b><h3>Respon yang jelas</h3><p>Mulai dari pertanyaan awal, kami bantu menjawab kebutuhan perjalanan secara ringkas dan terbuka.</p></article><article><b>02</b><h3>Rute yang masuk akal</h3><p>Jadwal disusun dengan waktu tempuh yang manusiawi, bukan sekadar mengejar banyak titik.</p></article><article><b>03</b><h3>Sentuhan lokal</h3><p>Rekomendasi pengalaman dikurasi agar perjalanan terasa dekat dengan tempat yang dikunjungi.</p></article><article><b>04</b><h3>Ruang untuk fleksibel</h3><p>Perjalanan yang baik selalu menyisakan waktu untuk menemukan hal yang tak direncanakan.</p></article></div></div></section>
+
+        {{-- 05. Trips --}}
+        <section class="ad-products" id="perjalanan" aria-labelledby="products-title"><div class="shell"><div class="ad-section-head"><p class="ad-index">04 / PILIHAN PERJALANAN</p><h2 id="products-title">Mulai dari<br><i>yang memanggil Anda.</i></h2><p class="ad-section-note">Pilih satu ide perjalanan, lalu kami bantu menyesuaikannya dengan waktu dan orang-orang yang ikut.</p></div><div class="ad-products__grid"><a href="{{ route('contact') }}">Bali yang lebih sunyi <span>↗</span></a><a href="{{ route('contact') }}">Jelajah Jogja <span>↗</span></a><a href="{{ route('contact') }}">Bandung & dataran tinggi <span>↗</span></a><a href="{{ route('contact') }}">Lombok pesisir <span>↗</span></a><a href="{{ route('contact') }}">Labuan Bajo <span>↗</span></a><a href="{{ route('contact') }}">Raja Ampat <span>↗</span></a><a href="{{ route('contact') }}">Bromo & sekitarnya <span>↗</span></a><a href="{{ route('contact') }}">Danau Toba <span>↗</span></a><a href="{{ route('contact') }}">Makassar & Toraja <span>↗</span></a><a href="{{ route('contact') }}">City escape <span>↗</span></a><a href="{{ route('contact') }}">Perjalanan keluarga <span>↗</span></a><a href="{{ route('contact') }}">Rute custom <span>↗</span></a></div></div></section>
+
+        {{-- 06. Gallery --}}
+        <section class="ad-work" id="galeri" aria-labelledby="work-title"><div class="shell"><div class="ad-section-head"><p class="ad-index">05 / GALERI PERJALANAN</p><h2 id="work-title">Indonesia yang<br><i>ingin Anda lihat lagi.</i></h2><a class="ad-text-link" href="{{ route('gallery') }}">Buka galeri penuh <span aria-hidden="true">↗</span></a></div><div class="ad-work__mosaic"><a class="ad-work__item ad-work__item--large" href="{{ route('gallery') }}"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1300&q=85" alt="Pura di Bali" loading="lazy"><span>BALI / BUDAYA & ALAM</span></a><a class="ad-work__item" href="{{ route('gallery') }}"><img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=900&q=85" alt="Kepulauan Indonesia" loading="lazy"><span>KEPULAUAN / LAUT TERBUKA</span></a><a class="ad-work__item" href="{{ route('gallery') }}"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85" alt="Pegunungan dan danau" loading="lazy"><span>DATARAN TINGGI / PAGI SEJUK</span></a></div><div class="ad-client-strip" aria-label="Jenis perjalanan"><span>Solo trip</span><span>Keluarga</span><span>Teman dekat</span><span>Honeymoon</span><span>Corporate trip</span><span>Custom journey</span></div></div></section>
+
+        {{-- 07. Contact --}}
+        <section class="ad-contact" id="konsultasi" aria-labelledby="contact-title"><div class="shell ad-contact__grid"><div><p class="ad-index">06 / RENCANAKAN BERSAMA</p><h2 id="contact-title">Ke mana pun tujuannya,<br><i>mari cari jalannya.</i></h2><p>Ceritakan waktu, jumlah orang, dan bayangan perjalanan Anda. Kami akan bantu merangkai rute yang cocok.</p><a class="ad-button" href="{{ route('contact') }}">Mulai konsultasi <span aria-hidden="true">↗</span></a></div><div class="ad-contact__details"><div><span>UNTUK PERENCANAAN</span><a href="{{ route('contact') }}">Hubungi tim Travel Indo</a></div><div><span>YANG BISA DIDISKUSIKAN</span><p>Destinasi · durasi · transportasi · akomodasi · aktivitas · kebutuhan khusus</p></div><div><span>CAKUPAN PERJALANAN</span><p>Bali · Jawa · Nusa Tenggara · Sulawesi · Sumatra · Maluku · Papua dan rute Indonesia lainnya</p></div></div></div></section>
+
+        <footer class="ad-footer"><div class="shell ad-footer__top"><div><a class="ad-footer__brand" href="#top">TRAVEL<span>INDO</span></a><p>Perjalanan di Indonesia, disusun dengan lebih terasa.</p></div><div><p>RUTE POPULER</p><address>Bali · Jogja · Lombok<br>Labuan Bajo · Bromo · Raja Ampat</address></div><div><p>MENU</p><a href="#layanan">Spesialisasi</a><a href="#galeri">Galeri</a><a href="#konsultasi">Konsultasi</a></div></div><div class="shell ad-footer__bottom"><span>© {{ date('Y') }} Travel Indo</span><a href="#top">Kembali ke atas ↑</a></div></footer>
+    </div>
+@endsection
