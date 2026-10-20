@@ -2,12 +2,17 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class BlogPageTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_blog_page_displays_travel_articles_with_expandable_details(): void
     {
+        $this->seed();
+
         $response = $this->get('/blog');
 
         $response

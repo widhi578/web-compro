@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 
 class SiteContent extends Model
 {
@@ -17,11 +18,17 @@ class SiteContent extends Model
 
     public static function value(string $key): string
     {
+        $default = (string) (config('cms.defaults')[$key] ?? '');
+
+        if (! Schema::hasTable((new static)->getTable())) {
+            return $default;
+        }
+
         return Cache::remember(
             "site-content.{$key}",
             now()->addDay(),
             fn () => static::query()->whereKey($key)->value('value')
-                ?? (string) config("cms.defaults.{$key}", '')
+                ?? $default
         );
     }
 

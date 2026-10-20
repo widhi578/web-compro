@@ -36,7 +36,7 @@
                             @if ($value)
                                 <img class="admin-image-preview" src="{{ $value }}" alt="Pratinjau {{ $field['label'] }}">
                             @endif
-                            <input type="url" name="content[{{ $field['key'] }}]" value="{{ $value }}" placeholder="https://...">
+                            <input type="text" name="content[{{ $field['key'] }}]" value="{{ $value }}" placeholder="URL gambar atau gambar yang diunggah">
                             <span class="admin-help">Atau unggah gambar JPG, PNG, atau WebP (maksimal 5 MB).</span>
                             <input type="file" name="image_uploads[{{ $field['key'] }}]" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
                         @else

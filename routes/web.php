@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\ContentController as AdminContentController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\PublicBlogController;
+use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
@@ -28,6 +28,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/konten/{page}', [AdminContentController::class, 'update'])->name('content.update');
         Route::resource('/artikel', AdminArticleController::class)
             ->parameters(['artikel' => 'article'])
+            ->except(['show'])
             ->names('articles');
     });
 });

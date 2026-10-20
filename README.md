@@ -7,6 +7,22 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Panel Admin Travel Indo
+
+Jalankan migrasi dan seed konten awal, lalu buat akun admin:
+
+```sh
+php artisan migrate
+php artisan db:seed
+php artisan admin:create admin@example.com "Nama Admin"
+```
+
+Perintah pembuatan admin meminta kata sandi secara interaktif. Setelah itu, masuk
+melalui `/admin/login`. Admin dapat mengubah teks dan gambar halaman, serta
+membuat, mengedit, menerbitkan, atau menghapus artikel dari panel. Gambar dapat
+diunggah (JPG, PNG, atau WebP, maksimal 5 MB) atau menggunakan URL HTTP/HTTPS.
+Pastikan `public/uploads` dapat ditulisi oleh aplikasi di server produksi.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

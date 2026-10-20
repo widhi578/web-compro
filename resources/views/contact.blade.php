@@ -3,9 +3,13 @@
 @section('title', 'Contact - Travel Indo')
 
 @section('content')
+    @php
+        $c = $contentValue;
+        $mapQuery = rawurlencode($c('contact.map.query'));
+    @endphp
     <div class="ad-home contact-page" id="top">
         <section class="contact-page__banner" aria-labelledby="contact-page-title">
-            <h1 id="contact-page-title">Hubungi Kami</h1>
+            <h1 id="contact-page-title">{{ $c('contact.banner.title') }}</h1>
             <span aria-hidden="true"></span>
         </section>
 
@@ -13,11 +17,8 @@
             <div class="shell">
                 <div class="contact-page__intro">
                     <p class="ad-index">TRAVEL INDO / INDONESIA</p>
-                    <h2 id="contact-intro-title">Informasi Kontak</h2>
-                    <p>
-                        Hubungi kami melalui email, telepon, atau kunjungi alamat Travel Indo.
-                        Kami siap membantu kebutuhan perjalanan Anda.
-                    </p>
+                    <h2 id="contact-intro-title">{{ $c('contact.heading') }}</h2>
+                    <p>{{ $c('contact.description') }}</p>
                 </div>
 
                 <div class="contact-page__cards">
@@ -29,7 +30,7 @@
                             </svg>
                         </span>
                         <h3>Email</h3>
-                        <a href="mailto:widhipraditya@gmail.com">widhipraditya@gmail.com</a>
+                        <a href="mailto:{{ $c('contact.email') }}">{{ $c('contact.email') }}</a>
                     </article>
 
                     <article class="contact-page__card">
@@ -39,7 +40,7 @@
                             </svg>
                         </span>
                         <h3>Telepon / WhatsApp</h3>
-                        <a href="tel:+6285810632983">+62 858-1063-2983</a>
+                        <a href="tel:{{ $c('contact.phone_link') }}">{{ $c('contact.phone') }}</a>
                     </article>
 
                     <article class="contact-page__card">
@@ -50,20 +51,20 @@
                             </svg>
                         </span>
                         <h3>Alamat</h3>
-                        <address>Jl. Cipinang Latihan RT009/RW014 Cipinang Besar Utara</address>
+                        <address>{{ $c('contact.address') }}</address>
                     </article>
                 </div>
 
                 <section class="contact-page__map-section" aria-labelledby="contact-map-title">
                     <div class="contact-page__map-heading">
                         <p class="ad-index">KUNJUNGI KAMI</p>
-                        <h2 id="contact-map-title">Temukan Lokasi Kami</h2>
-                        <p>Jl. Cipinang Latihan RT009/RW014 Cipinang Besar Utara</p>
+                        <h2 id="contact-map-title">{{ $c('contact.map.title') }}</h2>
+                        <p>{{ $c('contact.map.query') }}</p>
                     </div>
                     <div class="contact-page__map">
                         <iframe
                             title="Peta lokasi Travel Indo di Cipinang Besar Utara"
-                            src="https://maps.google.com/maps?q=Jl.%20Cipinang%20Latihan%20RT009%2FRW014%20Cipinang%20Besar%20Utara&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            src="https://maps.google.com/maps?q={{ $mapQuery }}&t=&z=15&ie=UTF8&iwloc=&output=embed"
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
                             allowfullscreen
@@ -71,7 +72,7 @@
                     </div>
                     <a
                         class="contact-page__map-link"
-                        href="https://www.google.com/maps/search/?api=1&query=Jl.%20Cipinang%20Latihan%20RT009%2FRW014%20Cipinang%20Besar%20Utara"
+                        href="https://www.google.com/maps/search/?api=1&query={{ $mapQuery }}"
                         target="_blank"
                         rel="noopener noreferrer"
                     >

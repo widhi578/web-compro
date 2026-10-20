@@ -7,9 +7,9 @@ use App\Models\SiteContent;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
-use Illuminate\Support\Str;
 
 class ContentController extends Controller
 {
@@ -33,22 +33,26 @@ class ContentController extends Controller
             ->keyBy('key');
 
         $rules = $fields->mapWithKeys(function (array $field, string $key): array {
+            $escapedKey = str_replace('.', '\\.', $key);
             $rule = $field['type'] === 'image'
                 ? ['nullable', 'string', 'max:2048']
                 : ['required', 'string', 'max:5000'];
 
-            return ["content.{$key}" => $rule];
+            return ["content.{$escapedKey}" => $rule];
         })->all();
 
         foreach ($fields->where('type', 'image') as $key => $field) {
-            $rules["image_uploads.{$key}"] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'];
+            $escapedKey = str_replace('.', '\\.', $key);
+            $rules["image_uploads.{$escapedKey}"] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'];
         }
 
         $validated = $request->validate($rules);
         $values = $validated['content'] ?? [];
+        $uploads = $request->file('image_uploads', []);
 
         foreach ($fields->where('type', 'image') as $key => $field) {
             $image = $values[$key] ?? '';
+            $uploadedImage = $uploads[$key] ?? null;
 
             if ($image !== '' && ! $this->isAllowedImageValue($image)) {
                 throw ValidationException::withMessages([
@@ -56,8 +60,8 @@ class ContentController extends Controller
                 ]);
             }
 
-            if ($request->hasFile("image_uploads.{$key}")) {
-                $file = $request->file("image_uploads.{$key}");
+            if ($uploadedImage) {
+                $file = $uploadedImage;
                 $directory = public_path('uploads/content');
                 File::ensureDirectoryExists($directory);
 

@@ -1,3 +1,5 @@
+@php($c = $contentValue)
+
 <div class="ad-home blog-article-page" id="top">
     <section class="blog-article-page__banner" aria-labelledby="category-title">
         <div class="shell">
@@ -28,7 +30,7 @@
 
             <figure class="blog-article__cover">
                 <img
-                    src="https://images.unsplash.com/{{ $category['image'] }}?auto=format&fit=crop&w=1500&q=85"
+                    src="{{ $category['image'] }}"
                     alt="{{ $category['image_alt'] }}"
                 >
                 <figcaption>{{ $category['image_caption'] }}</figcaption>
@@ -49,11 +51,8 @@
                 <p>{{ $category['closing'] }}</p>
 
                 <aside class="blog-article__note">
-                    <strong>Catatan perjalanan</strong>
-                    <p>
-                        Kondisi dan aturan destinasi dapat berubah. Periksa informasi
-                        terbaru dari pengelola setempat sebelum berangkat.
-                    </p>
+                    <strong>{{ $c('shared.article.note_title') }}</strong>
+                    <p>{{ $c('shared.article.note') }}</p>
                 </aside>
             </div>
         </article>
@@ -61,17 +60,17 @@
         <section class="blog-article-related" aria-labelledby="related-title">
             <div class="blog-article-related__heading">
                 <div>
-                    <p class="ad-index">LANJUTKAN JELAJAHI</p>
-                    <h2 id="related-title">Cerita lainnya</h2>
+                    <p class="ad-index">{{ $c('shared.related.eyebrow') }}</p>
+                    <h2 id="related-title">{{ $c('shared.related.title') }}</h2>
                 </div>
-                <a href="{{ route('blog') }}">Lihat semua cerita <span aria-hidden="true">↗</span></a>
+                <a href="{{ route('blog') }}">{{ $c('shared.related.link') }} <span aria-hidden="true">↗</span></a>
             </div>
 
             <div class="blog-article-related__grid">
                 @foreach ($category['related'] as $story)
                     <article class="blog-article-related__card">
                         <img
-                            src="https://images.unsplash.com/{{ $story['image'] }}?auto=format&fit=crop&w=800&q=85"
+                            src="{{ $story['image'] }}"
                             alt="{{ $story['alt'] }}"
                             loading="lazy"
                         >
