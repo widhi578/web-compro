@@ -17,7 +17,19 @@
                 <span class="brand__name">travel<span>indo</span></span>
             </a>
 
-            <nav class="site-nav__links" aria-label="Navigasi utama">
+            <button
+                class="site-nav__toggle"
+                type="button"
+                aria-label="Buka menu navigasi"
+                aria-expanded="false"
+                aria-controls="primary-navigation"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="site-nav__links" id="primary-navigation" aria-label="Navigasi utama">
                 <ul>
                     <li>
                         <a
@@ -78,9 +90,8 @@
                         >Blog</a>
                     </li>
                 </ul>
+                <a class="button button--nav" style="color: #fff;" href="{{ route('contact') }}">Konsultasi <span aria-hidden="true">↗</span></a>
             </nav>
-
-            <a class="button button--nav" href="{{ route('contact') }}">Konsultasi <span aria-hidden="true">↗</span></a>
         </div>
     </header>
 

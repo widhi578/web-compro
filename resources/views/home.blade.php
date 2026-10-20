@@ -297,8 +297,7 @@
                         </span>
                         <h3>Ruang untuk fleksibel</h3>
                         <p>
-                            Perjalanan yang baik selalu menyisakan waktu untuk menemukan hal
-                            yang tak direncanakan.
+                            Perjalanan yang baik selalu menyisakan waktu untuk menemukan hal yang baru.
                         </p>
                     </article>
                 </div>

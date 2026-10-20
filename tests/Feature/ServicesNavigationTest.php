@@ -12,6 +12,11 @@ class ServicesNavigationTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('class="site-nav__toggle"', false)
+            ->assertSee('aria-controls="primary-navigation"', false)
+            ->assertSee('class="button button--nav"', false)
+            ->assertSee('href="'.route('contact').'"', false)
+            ->assertSee('Konsultasi')
             ->assertSee('Our Services')
             ->assertSee(route('blog.nature'))
             ->assertSee(route('blog.culture'))

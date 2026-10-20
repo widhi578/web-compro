@@ -144,6 +144,16 @@ if (tripGallery) {
 	const showSlide = (index) => {
 		const nextSlide = (index + tripSlides.length) % tripSlides.length;
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const isWrapping = index < 0 || index >= tripSlides.length;
+
+		if (isWrapping) {
+			tripGallery.style.scrollBehavior = 'auto';
+			tripGallery.scrollLeft = getSlideOffset(tripSlides[nextSlide]);
+			window.requestAnimationFrame(() => {
+				tripGallery.style.removeProperty('scroll-behavior');
+			});
+			return;
+		}
 
 		tripGallery.scrollTo({
 			left: getSlideOffset(tripSlides[nextSlide]),
@@ -204,6 +214,46 @@ if (tripGallery) {
 }
 
 const servicesMenu = document.querySelector('.site-nav__item--services');
+const siteNavigation = document.querySelector('.site-nav');
+
+if (siteNavigation) {
+	const navigationToggle = siteNavigation.querySelector('.site-nav__toggle');
+	const navigationLinks = siteNavigation.querySelector('.site-nav__links');
+
+	const setNavigationOpen = (isOpen) => {
+		siteNavigation.classList.toggle('is-menu-open', isOpen);
+		navigationToggle.setAttribute('aria-expanded', String(isOpen));
+		navigationToggle.setAttribute('aria-label', isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+
+		if (!isOpen && servicesMenu) {
+			servicesMenu.classList.remove('is-open');
+			servicesMenu.querySelector('.site-nav__submenu-toggle').setAttribute('aria-expanded', 'false');
+		}
+	};
+
+	navigationToggle.addEventListener('click', () => {
+		setNavigationOpen(!siteNavigation.classList.contains('is-menu-open'));
+	});
+
+	navigationLinks.addEventListener('click', (event) => {
+		if (event.target.closest('a')) {
+			setNavigationOpen(false);
+		}
+	});
+
+	document.addEventListener('click', (event) => {
+		if (!siteNavigation.contains(event.target)) {
+			setNavigationOpen(false);
+		}
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && siteNavigation.classList.contains('is-menu-open')) {
+			setNavigationOpen(false);
+			navigationToggle.focus();
+		}
+	});
+}
 
 if (servicesMenu) {
 	const servicesToggle = servicesMenu.querySelector('.site-nav__submenu-toggle');
