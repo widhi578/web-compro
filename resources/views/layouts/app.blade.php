@@ -19,11 +19,64 @@
 
             <nav class="site-nav__links" aria-label="Navigasi utama">
                 <ul>
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">Tentang</a></li>
-                    <li><a href="{{ route('services') }}">Layanan</a></li>
-                    <li><a href="{{ route('gallery') }}">Galeri</a></li>
-                    <li><a href="{{ route('blog') }}">Blog</a></li>
+                    <li>
+                        <a
+                            href="{{ route('home') }}"
+                            @class(['is-active' => request()->routeIs('home')])
+                            @if (request()->routeIs('home')) aria-current="page" @endif
+                        >Home</a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ route('about') }}"
+                            @class(['is-active' => request()->routeIs('about')])
+                            @if (request()->routeIs('about')) aria-current="page" @endif
+                        >About Us</a>
+                    </li>
+                    <li class="site-nav__item--services">
+                        <div class="site-nav__services-link">
+                            <a
+                                href="{{ route('services') }}"
+                                @class(['is-active' => request()->routeIs('services', 'blog.nature', 'blog.culture', 'blog.tips')])
+                                @if (request()->routeIs('services', 'blog.nature', 'blog.culture', 'blog.tips')) aria-current="page" @endif
+                            >Our Services</a>
+                            <button
+                                class="site-nav__submenu-toggle"
+                                type="button"
+                                aria-label="Tampilkan submenu Our Services"
+                                aria-expanded="false"
+                                aria-controls="services-submenu"
+                            >
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <ul class="site-nav__submenu" id="services-submenu" aria-label="Kategori layanan">
+                            <li><a href="{{ route('blog.nature') }}">Alam & Petualangan</a></li>
+                            <li><a href="{{ route('blog.culture') }}">Budaya & Rasa Lokal</a></li>
+                            <li><a href="{{ route('blog.tips') }}">Tips Perjalanan</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ route('gallery') }}"
+                            @class(['is-active' => request()->routeIs('gallery')])
+                            @if (request()->routeIs('gallery')) aria-current="page" @endif
+                        >Gallery</a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ route('contact') }}"
+                            @class(['is-active' => request()->routeIs('contact')])
+                            @if (request()->routeIs('contact')) aria-current="page" @endif
+                        >Contact Us</a>
+                    </li>
+                    <li>
+                        <a
+                            href="{{ route('blog') }}"
+                            @class(['is-active' => request()->routeIs('blog')])
+                            @if (request()->routeIs('blog')) aria-current="page" @endif
+                        >Blog</a>
+                    </li>
                 </ul>
             </nav>
 

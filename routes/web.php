@@ -8,7 +8,6 @@ Route::view('/services', 'services')->name('services');
 Route::view('/gallery', 'gallery')->name('gallery');
 Route::view('/contact', 'contact')->name('contact');
 Route::view('/blog', 'blog')->name('blog');
-
-Route::post('/contact', function () {
-    return back()->with('status', 'Formulir kontak belum terhubung ke sistem pengiriman.');
-})->name('contact.submit');
+Route::view('/blog/alam-petualangan', 'blog.categories.alam-petualangan')->name('blog.nature');
+Route::view('/blog/budaya-rasa-lokal', 'blog.categories.budaya-lokal')->name('blog.culture');
+Route::view('/blog/tips-perjalanan', 'blog.categories.tips-perjalanan')->name('blog.tips');

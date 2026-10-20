@@ -95,3 +95,145 @@ if (heroGallery) {
 
 	updateActiveSlide();
 }
+
+const tripGallery = document.querySelector('[data-trip-gallery]');
+
+if (tripGallery) {
+	const tripSlides = [...tripGallery.querySelectorAll('[data-trip-slide]')];
+	const previousButton = document.querySelector('[data-trip-previous]');
+	const nextButton = document.querySelector('[data-trip-next]');
+	const status = document.querySelector('[data-trip-status]');
+	const carousel = tripGallery.closest('.ad-work__carousel');
+	let activeSlide = 0;
+	let scrollFrame = null;
+	let pointerOverGallery = false;
+	let galleryHasFocus = false;
+
+	const getSlideOffset = (slide) => {
+		const galleryBounds = tripGallery.getBoundingClientRect();
+		const slideBounds = slide.getBoundingClientRect();
+
+		return tripGallery.scrollLeft + slideBounds.left - galleryBounds.left;
+	};
+
+	const updateActiveSlide = () => {
+		const galleryLeft = tripGallery.getBoundingClientRect().left;
+		let nearestSlide = 0;
+		let nearestDistance = Number.POSITIVE_INFINITY;
+
+		tripSlides.forEach((slide, index) => {
+			const distance = Math.abs(slide.getBoundingClientRect().left - galleryLeft);
+
+			if (distance < nearestDistance) {
+				nearestSlide = index;
+				nearestDistance = distance;
+			}
+		});
+
+		activeSlide = nearestSlide;
+
+		tripSlides.forEach((slide, index) => {
+			slide.setAttribute('aria-current', String(index === activeSlide));
+		});
+
+		if (status) {
+			status.textContent = `${String(activeSlide + 1).padStart(2, '0')} / ${String(tripSlides.length).padStart(2, '0')}`;
+		}
+	};
+
+	const showSlide = (index) => {
+		const nextSlide = (index + tripSlides.length) % tripSlides.length;
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		tripGallery.scrollTo({
+			left: getSlideOffset(tripSlides[nextSlide]),
+			behavior: reduceMotion ? 'auto' : 'smooth',
+		});
+	};
+
+	previousButton?.addEventListener('click', () => showSlide(activeSlide - 1));
+	nextButton?.addEventListener('click', () => showSlide(activeSlide + 1));
+
+	tripGallery.addEventListener('scroll', () => {
+		if (scrollFrame !== null) {
+			return;
+		}
+
+		scrollFrame = window.requestAnimationFrame(() => {
+			updateActiveSlide();
+			scrollFrame = null;
+		});
+	});
+
+	tripGallery.addEventListener('keydown', (event) => {
+		if (event.key === 'ArrowLeft') {
+			event.preventDefault();
+			showSlide(activeSlide - 1);
+		}
+
+		if (event.key === 'ArrowRight') {
+			event.preventDefault();
+			showSlide(activeSlide + 1);
+		}
+	});
+
+	if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		carousel?.addEventListener('pointerenter', () => {
+			pointerOverGallery = true;
+		});
+		carousel?.addEventListener('pointerleave', () => {
+			pointerOverGallery = false;
+		});
+		carousel?.addEventListener('focusin', () => {
+			galleryHasFocus = true;
+		});
+		carousel?.addEventListener('focusout', (event) => {
+			if (!carousel.contains(event.relatedTarget)) {
+				galleryHasFocus = false;
+			}
+		});
+
+		window.setInterval(() => {
+			if (!pointerOverGallery && !galleryHasFocus && !document.hidden) {
+				showSlide(activeSlide + 1);
+			}
+		}, 5000);
+	}
+
+	updateActiveSlide();
+}
+
+const servicesMenu = document.querySelector('.site-nav__item--services');
+
+if (servicesMenu) {
+	const servicesToggle = servicesMenu.querySelector('.site-nav__submenu-toggle');
+	const servicesSubmenu = servicesMenu.querySelector('.site-nav__submenu');
+
+	const setServicesMenuOpen = (isOpen) => {
+		servicesMenu.classList.toggle('is-open', isOpen);
+		servicesToggle.setAttribute('aria-expanded', String(isOpen));
+	};
+
+	servicesToggle.addEventListener('click', () => {
+		setServicesMenuOpen(!servicesMenu.classList.contains('is-open'));
+	});
+
+	servicesSubmenu.addEventListener('click', (event) => {
+		if (event.target.closest('a')) {
+			setServicesMenuOpen(false);
+		}
+	});
+
+	document.addEventListener('click', (event) => {
+		if (!servicesMenu.contains(event.target)) {
+			setServicesMenuOpen(false);
+		}
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && servicesMenu.classList.contains('is-open')) {
+			setServicesMenuOpen(false);
+			servicesToggle.focus();
+		}
+	});
+}
