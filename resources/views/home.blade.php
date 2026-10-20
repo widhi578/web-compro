@@ -240,7 +240,7 @@
         <section class="ad-reasons" aria-labelledby="reasons-title">
             <div class="shell">
                 <div class="ad-section-head ad-section-head--light">
-                    <p class="ad-index">MENGAPA KAMI</p>
+                    <p class="ad-index">MENGAPA KAMI?</p>
                     <h2 id="reasons-title">
                         Detail yang diurus,<br><i>supaya Anda bisa hadir.</i>
                     </h2>

@@ -21,6 +21,9 @@ class ContactPageTest extends TestCase
             ->assertSee('title="Peta lokasi Travel Indo di Cipinang Besar Utara"', false)
             ->assertSee('https://maps.google.com/maps?', false)
             ->assertSee('Buka di Google Maps')
+            ->assertSee('class="ad-whatsapp-float"', false)
+            ->assertSee('src="'.asset('assets/whatsapp.png').'"', false)
+            ->assertSee('alt=""', false)
             ->assertSee('Contact Us</a>', false)
             ->assertDontSee('<form', false)
             ->assertDontSee('Kirim rencana perjalanan Anda.');

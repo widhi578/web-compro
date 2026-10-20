@@ -94,13 +94,10 @@
 
 <a
     class="ad-whatsapp-float"
-    href="https://wa.me/6285810632983?text=Halo%20Travel%20Indo%2C%20saya%20ingin%20bertanya%20tentang%20perjalanan."
+    href="https://wa.me/6285810632983?text=Halo%20Travel%20Indo%2C%20saya%20ingin%20bertanya%20tentang%20perjalanan%20yang%20saya%20inginkan."
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Hubungi Travel Indo melalui WhatsApp"
 >
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.5 11.8a8.3 8.3 0 0 1-12.3 7.3L3 20.5l1.4-5a8.3 8.3 0 1 1 16.1-3.7Z"></path>
-        <path d="M8.3 8.4c.3-.5.6-.5.9-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2.1.4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.3.3.3.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-1.9.5-1.1-.2-2.5-.9-3.8-2.1-1.1-1-1.9-2.3-2.2-3.3-.3-1.1.3-2 .7-2.4Z"></path>
-    </svg>
+    <img src="{{ asset('assets/whatsapp.png') }}" alt="Logo WhatsApp">
 </a>
