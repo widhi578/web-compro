@@ -1492,15 +1492,15 @@ img {
 .ad-hero__slide figcaption { position: absolute; right: max(32px, calc((100vw - 1160px) / 2)); bottom: 35px; color: rgba(255,255,255,.72); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .ad-hero__travel-shade { position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(10,29,29,.93) 0%, rgba(10,29,29,.73) 40%, rgba(10,29,29,.2) 77%, rgba(10,29,29,.1)), linear-gradient(0deg, rgba(7,25,24,.26), transparent 44%); }
 .travel-ad-home .ad-hero__inner { z-index: 2; }.travel-ad-home .ad-hero__grain { z-index: 3; }.travel-ad-home .ad-hero__tag { z-index: 4; right: max(32px, calc((100vw - 1160px) / 2)); bottom: 35px; }
-.ad-hero__controls { position: absolute; z-index: 4; top: 34px; right: max(32px, calc((100vw - 1160px) / 2)); display: flex; align-items: center; gap: 10px; }
+.ad-hero__controls { position: absolute; z-index: 4; inset: 0; pointer-events: none; }
 .ad-hero__controls > button, .ad-hero__controls div button { display: grid; place-items: center; padding: 0; color: #fff; background: rgba(10,29,29,.35); border: 1px solid rgba(255,255,255,.55); cursor: pointer; }
-.ad-hero__controls > button { width: 35px; height: 35px; border-radius: 50%; font-size: 16px; }.ad-hero__controls > button:hover { color: var(--ad-ink); background: #fff; }
-.ad-hero__controls div { display: flex; gap: 6px; }.ad-hero__controls div button { width: 7px; height: 7px; border-radius: 99px; }.ad-hero__controls div button[aria-current="true"] { width: 20px; background: var(--ad-lime); border-color: var(--ad-lime); }
+.ad-hero__controls > button { position: absolute; top: 50%; width: 35px; height: 35px; border-radius: 50%; font-size: 16px; pointer-events: auto; transform: translateY(-50%); }.ad-hero__controls > button:first-child { left: max(12px, calc((100vw - 1250px) / 2)); }.ad-hero__controls > button:last-child { right: max(12px, calc((100vw - 1250px) / 2)); }.ad-hero__controls > button:hover { color: var(--ad-ink); background: #fff; }
+.ad-hero__controls div { position: absolute; top: 34px; left: 50%; display: flex; gap: 6px; pointer-events: auto; transform: translateX(-50%); }.ad-hero__controls div button { width: 7px; height: 7px; border-radius: 99px; }.ad-hero__controls div button[aria-current="true"] { width: 20px; background: var(--ad-lime); border-color: var(--ad-lime); }
 .ad-hero__controls > button:focus-visible, .ad-hero__controls div button:focus-visible, .ad-hero__gallery:focus-visible { outline: 2px solid var(--ad-lime); outline-offset: 3px; }
 @keyframes ad-hero-arrive { from { transform: scale(1.035); } to { transform: scale(1); } }
 
 @media (max-width: 680px) {
-    .ad-hero__slide img { object-position: 58% center; }.ad-hero__travel-shade { background: linear-gradient(0deg, rgba(7,25,24,.9), rgba(7,25,24,.2) 82%); }.travel-ad-home .ad-hero__tag, .ad-hero__slide figcaption { display: none; }.ad-hero__controls { top: 20px; right: 20px; }.ad-hero__controls > button { width: 32px; height: 32px; }
+    .ad-hero__slide img { object-position: 58% center; }.ad-hero__travel-shade { background: linear-gradient(0deg, rgba(7,25,24,.9), rgba(7,25,24,.2) 82%); }.travel-ad-home .ad-hero__tag, .ad-hero__slide figcaption { display: none; }.ad-hero__controls { inset: auto auto 24px 50%; display: flex; width: max-content; align-items: center; gap: 10px; pointer-events: auto; touch-action: manipulation; transform: translateX(-50%); }.ad-hero__controls > button { position: static; width: 44px; height: 44px; pointer-events: auto; touch-action: manipulation; transform: none; }.ad-hero__controls div { position: static; transform: none; }
 }
 
 .home-v2 h1,

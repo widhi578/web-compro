@@ -90,7 +90,7 @@ if (heroGallery) {
 			if (!pointerOverHero && !heroHasFocus && !document.hidden) {
 				showSlide(activeSlide + 1);
 			}
-		}, 2000);
+		}, 5000);
 	}
 
 	updateActiveSlide();
