@@ -5,10 +5,11 @@
 @section('content')
     @php($c = $contentValue)
     <div class="ad-home blog-page" id="top">
+        {{-- Pengantar halaman blog. --}}
         <section class="blog-page__banner" aria-labelledby="blog-title">
             <p class="ad-index">{{ $c('blog.banner.eyebrow') }}</p>
             <h1 id="blog-title">{{ $c('blog.banner.title') }}</h1>
-            <p>{{ $c('blog.banner.description') }}</p>
+            <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('blog.banner.description')) !!}</div>
         </section>
 
         <div class="blog-page__content">
@@ -19,6 +20,7 @@
                 </div>
             </div>
 
+            {{-- Artikel dikelompokkan sesuai kategori. --}}
             @foreach ($categories as $category)
                 <section
                     class="blog-page__category"
@@ -51,7 +53,9 @@
                                     <p>{{ $article->excerpt }}</p>
                                     <details class="blog-card__more">
                                         <summary>Baca selengkapnya <span aria-hidden="true">↗</span></summary>
-                                        <p>{{ $article->content }}</p>
+                                        <div class="blog-card__formatted-content">
+                                            {!! \App\Support\RichText::sanitize($article->content) !!}
+                                        </div>
                                     </details>
                                 </div>
                             </article>

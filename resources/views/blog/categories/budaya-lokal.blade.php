@@ -15,7 +15,7 @@
             'image' => $c('category.culture.image'),
             'image_alt' => $c('category.culture.image_alt'),
             'image_caption' => $c('category.culture.image_caption'),
-            'paragraphs' => preg_split('/\r\n\s*\r\n|\n\s*\n/', trim($c('category.culture.body'))),
+            'body' => $c('category.culture.body'),
             'section_title' => $c('category.culture.section_title'),
             'section_intro' => $c('category.culture.section_intro'),
             'tips' => preg_split('/\r\n|\r|\n/', trim($c('category.culture.tips'))),

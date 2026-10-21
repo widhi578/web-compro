@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Support\RichText;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -13,10 +14,28 @@ use Illuminate\View\View;
 
 class ArticleController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        $status = $request->query('status', 'all');
+        if (! in_array($status, ['all', 'published', 'draft'], true)) {
+            $status = 'all';
+        }
+
+        $query = Article::query()->latest();
+        if ($status === 'published') {
+            $query->where('is_published', true);
+        } elseif ($status === 'draft') {
+            $query->where('is_published', false);
+        }
+
         return view('admin.articles.index', [
-            'articles' => Article::query()->latest()->paginate(15),
+            'articles' => $query->paginate(12)->withQueryString(),
+            'articleCounts' => [
+                'all' => Article::count(),
+                'published' => Article::where('is_published', true)->count(),
+                'draft' => Article::where('is_published', false)->count(),
+            ],
+            'statusFilter' => $status,
             'categories' => config('cms.article_categories'),
         ]);
     }
@@ -34,6 +53,7 @@ class ArticleController extends Controller
         $data = $this->validatedData($request);
         $data['slug'] = $this->uniqueSlug($data['title']);
         $data['image'] = $this->storeImage($request);
+        $data['content'] = RichText::sanitize($data['content']);
         Article::create($data);
 
         return redirect()->route('admin.articles.index')->with('status', 'Artikel berhasil ditambahkan.');
@@ -60,6 +80,7 @@ class ArticleController extends Controller
             $data['image'] = $this->storeImage($request);
         }
 
+        $data['content'] = RichText::sanitize($data['content']);
         $article->update($data);
 
         return redirect()->route('admin.articles.index')->with('status', 'Artikel berhasil diperbarui.');
@@ -71,6 +92,19 @@ class ArticleController extends Controller
         $article->delete();
 
         return redirect()->route('admin.articles.index')->with('status', 'Artikel berhasil dihapus.');
+    }
+
+    public function toggleStatus(Article $article): RedirectResponse
+    {
+        $article->is_published = ! $article->is_published;
+        $article->save();
+
+        return redirect()->route('admin.articles.index')->with(
+            'status',
+            $article->is_published
+                ? 'Artikel berhasil diterbitkan dan sekarang tampil di halaman Blog.'
+                : 'Artikel dipindahkan ke Draft dan tidak tampil di halaman Blog.'
+        );
     }
 
     private function validatedData(Request $request, ?Article $article = null): array

@@ -5,11 +5,13 @@
 @section('content')
     @php($c = $contentValue)
     <div class="ad-home services-page" id="top">
+        {{-- Judul halaman layanan. --}}
         <section class="services-page__banner" aria-labelledby="services-title">
             <h1 id="services-title">{{ $c('services.banner.title') }}</h1>
             <span aria-hidden="true"></span>
         </section>
 
+        {{-- Daftar layanan Travel Indo. --}}
         <section
             class="services-page__specialties"
             aria-labelledby="specialties-title"
@@ -31,7 +33,7 @@
                             </svg>
                         </span>
                         <h3>{{ $c('home.specialties.1.title') }}</h3>
-                        <p>{{ $c('home.specialties.1.description') }}</p>
+                        <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('home.specialties.1.description')) !!}</div>
                     </article>
 
                     <article>
@@ -43,7 +45,7 @@
                             </svg>
                         </span>
                         <h3>{{ $c('home.specialties.2.title') }}</h3>
-                        <p>{{ $c('home.specialties.2.description') }}</p>
+                        <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('home.specialties.2.description')) !!}</div>
                     </article>
 
                     <article>
@@ -55,7 +57,7 @@
                             </svg>
                         </span>
                         <h3>{{ $c('home.specialties.3.title') }}</h3>
-                        <p>{{ $c('home.specialties.3.description') }}</p>
+                        <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('home.specialties.3.description')) !!}</div>
                     </article>
 
                     <article>
@@ -69,7 +71,7 @@
                             </svg>
                         </span>
                         <h3>{{ $c('home.specialties.4.title') }}</h3>
-                        <p>{{ $c('home.specialties.4.description') }}</p>
+                        <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('home.specialties.4.description')) !!}</div>
                     </article>
 
                     <article>
@@ -81,12 +83,13 @@
                             </svg>
                         </span>
                         <h3>{{ $c('home.specialties.5.title') }}</h3>
-                        <p>{{ $c('home.specialties.5.description') }}</p>
+                        <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('home.specialties.5.description')) !!}</div>
                     </article>
                 </div>
             </div>
         </section>
 
+        {{-- Pilihan destinasi perjalanan. --}}
         <section
             class="services-page__destinations"
             aria-labelledby="destinations-title"

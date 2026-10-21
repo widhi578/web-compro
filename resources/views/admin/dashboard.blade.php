@@ -1,11 +1,17 @@
 @extends('admin.layout')
 
-@section('title', 'Ringkasan Admin — Travel Indo')
+@section('title', 'Admin - Travel Indo')
 
 @section('content')
     <p class="admin-eyebrow">DASHBOARD</p>
     <h1>Kelola website Travel Indo</h1>
     <p class="admin-intro">Ubah teks dan gambar halaman, atau kelola artikel tanpa mengedit file kode.</p>
+
+    <section class="admin-welcome" aria-label="Panduan singkat">
+        <div><span>01</span><strong>Pilih bagian website</strong><p>Buka kartu halaman yang ingin diperbarui.</p></div>
+        <div><span>02</span><strong>Edit konten</strong><p>Ubah teks, gunakan format editor, atau unggah foto.</p></div>
+        <div><span>03</span><strong>Simpan dan lihat</strong><p>Periksa hasilnya lewat tombol Lihat website.</p></div>
+    </section>
 
     <div class="admin-stats">
         <article><strong>{{ $contentCount }}</strong><span>Bagian website</span></article>

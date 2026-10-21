@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SiteContent;
+use App\Support\RichText;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -34,9 +35,12 @@ class ContentController extends Controller
 
         $rules = $fields->mapWithKeys(function (array $field, string $key): array {
             $escapedKey = str_replace('.', '\\.', $key);
-            $rule = $field['type'] === 'image'
-                ? ['nullable', 'string', 'max:2048']
-                : ['required', 'string', 'max:5000'];
+            $rule = match ($field['type']) {
+                'image' => ['nullable', 'string', 'max:2048'],
+                'color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+                'richtext' => ['required', 'string', 'max:20000'],
+                default => ['required', 'string', 'max:5000'],
+            };
 
             return ["content.{$escapedKey}" => $rule];
         })->all();
@@ -74,6 +78,10 @@ class ContentController extends Controller
         }
 
         foreach ($values as $key => $value) {
+            if (($fields[$key]['type'] ?? null) === 'richtext') {
+                $value = RichText::sanitize((string) $value);
+            }
+
             SiteContent::query()->updateOrCreate(
                 ['key' => $key],
                 ['value' => trim((string) $value)]

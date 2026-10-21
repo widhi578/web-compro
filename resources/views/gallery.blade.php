@@ -5,11 +5,13 @@
 @section('content')
     @php($c = $contentValue)
     <div class="ad-home gallery-page" id="top">
+        {{-- Judul galeri. --}}
         <section class="gallery-page__banner" aria-labelledby="gallery-title">
             <h1 id="gallery-title">{{ $c('gallery.banner.title') }}</h1>
             <span aria-hidden="true"></span>
         </section>
 
+        {{-- Foto destinasi yang dikelola dari panel admin. --}}
         <section
             class="gallery-page__content"
             aria-labelledby="gallery-content-title"

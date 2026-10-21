@@ -8,17 +8,19 @@
         $mapQuery = rawurlencode($c('contact.map.query'));
     @endphp
     <div class="ad-home contact-page" id="top">
+        {{-- Judul halaman kontak. --}}
         <section class="contact-page__banner" aria-labelledby="contact-page-title">
             <h1 id="contact-page-title">{{ $c('contact.banner.title') }}</h1>
             <span aria-hidden="true"></span>
         </section>
 
+        {{-- Informasi kontak, alamat, dan peta. --}}
         <section class="contact-page__content" aria-labelledby="contact-intro-title">
             <div class="shell">
                 <div class="contact-page__intro">
                     <p class="ad-index">TRAVEL INDO / INDONESIA</p>
                     <h2 id="contact-intro-title">{{ $c('contact.heading') }}</h2>
-                    <p>{{ $c('contact.description') }}</p>
+                    <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('contact.description')) !!}</div>
                 </div>
 
                 <div class="contact-page__cards">
@@ -36,7 +38,14 @@
                     <article class="contact-page__card">
                         <span class="contact-page__card-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none">
-                                <path d="M7 3H4.8A1.8 1.8 0 0 0 3 4.8C3 13.7 10.3 21 19.2 21a1.8 1.8 0 0 0 1.8-1.8V17l-4.5-2-2 2a14 14 0 0 1-5.7-5.7l2-2L9 4.8 7 3Z"></path>
+                                <path
+                                    d="
+                                        M7 3H4.8A1.8 1.8 0 0 0 3 4.8
+                                        C3 13.7 10.3 21 19.2 21
+                                        a1.8 1.8 0 0 0 1.8-1.8V17l-4.5-2-2 2
+                                        a14 14 0 0 1-5.7-5.7l2-2L9 4.8 7 3Z
+                                    "
+                                ></path>
                             </svg>
                         </span>
                         <h3>Telepon / WhatsApp</h3>

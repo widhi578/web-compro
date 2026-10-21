@@ -1,45 +1,84 @@
 @extends('admin.layout')
 
-@section('title', 'Artikel Blog — Admin Travel Indo')
+@section('title', 'Artikel Blog - Admin Travel Indo')
 
 @section('content')
-    <div class="admin-page-heading">
+    {{-- Judul daftar dan pintasan untuk menulis artikel. --}}
+    <div class="admin-articles-heading">
         <div>
             <p class="admin-eyebrow">KONTEN WEBSITE</p>
             <h1>Artikel Blog</h1>
-            <p>Artikel yang ditandai tayang akan muncul di halaman Blog.</p>
+            <p>Atur cerita yang tampil di halaman Blog. Artikel Draft hanya terlihat di panel admin.</p>
         </div>
-        <a class="admin-button" href="{{ route('admin.articles.create') }}">+ Artikel baru</a>
+        <a class="admin-button" href="{{ route('admin.articles.create') }}"><span aria-hidden="true">+</span> Tulis artikel</a>
     </div>
 
-    <div class="admin-table-wrap">
-        <table class="admin-table">
-            <thead>
-                <tr><th>Judul</th><th>Kategori</th><th>Status</th><th></th></tr>
-            </thead>
-            <tbody>
-                @forelse ($articles as $article)
-                    <tr>
-                        <td>
-                            <strong>{{ $article->title }}</strong>
-                            <small>{{ $article->updated_at->format('d M Y') }}</small>
-                        </td>
-                        <td>{{ $categories[$article->category] ?? $article->category }}</td>
-                        <td><span class="admin-status {{ $article->is_published ? 'is-published' : '' }}">{{ $article->is_published ? 'Tayang' : 'Draft' }}</span></td>
-                        <td class="admin-row-actions">
-                            <a href="{{ route('admin.articles.edit', $article) }}">Edit</a>
-                            <form method="POST" action="{{ route('admin.articles.destroy', $article) }}" onsubmit="return confirm('Hapus artikel ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr><td colspan="4">Belum ada artikel. Buat artikel pertama untuk ditampilkan di blog.</td></tr>
-                @endforelse
-            </tbody>
-        </table>
+    {{-- Filter daftar berdasarkan status artikel. --}}
+    <section class="admin-article-summary" aria-label="Ringkasan artikel">
+        <a href="{{ route('admin.articles.index', ['status' => 'all']) }}" @class(['is-active' => $statusFilter === 'all'])>
+            <span>Semua artikel</span><strong>{{ $articleCounts['all'] }}</strong>
+        </a>
+        <a href="{{ route('admin.articles.index', ['status' => 'published']) }}" @class(['is-active' => $statusFilter === 'published'])>
+            <span>Tayang</span><strong>{{ $articleCounts['published'] }}</strong>
+        </a>
+        <a href="{{ route('admin.articles.index', ['status' => 'draft']) }}" @class(['is-active' => $statusFilter === 'draft'])>
+            <span>Draft</span><strong>{{ $articleCounts['draft'] }}</strong>
+        </a>
+    </section>
+
+    {{-- Kartu artikel dan tombol untuk mengelola tiap artikel. --}}
+    <div class="admin-article-list">
+        @forelse ($articles as $article)
+            <article class="admin-article-card">
+                <div class="admin-article-card__image">
+                    @if ($article->image)
+                        <img src="{{ $article->image }}" alt="{{ $article->image_alt ?: $article->title }}" loading="lazy">
+                    @else
+                        <span aria-hidden="true">TI</span>
+                    @endif
+                </div>
+                <div class="admin-article-card__body">
+                    <div class="admin-article-card__meta">
+                        <span>{{ $categories[$article->category] ?? $article->category }}</span>
+                        <span
+                            class="admin-status {{ $article->is_published ? 'is-published' : '' }}"
+                        >{{ $article->is_published ? 'Tayang' : 'Draft' }}</span>
+                    </div>
+                    <h2>{{ $article->title }}</h2>
+                    <p class="admin-article-card__excerpt">{{ $article->excerpt }}</p>
+                    <small>Diperbarui {{ $article->updated_at->format('d M Y') }} · {{ $article->reading_time }}</small>
+                </div>
+                <div class="admin-article-card__actions">
+                    <form method="POST" action="{{ route('admin.articles.status', $article) }}">
+                        @csrf
+                        @method('PATCH')
+                        <button class="admin-status-toggle" type="submit">{{ $article->is_published ? 'Jadikan draft' : 'Terbitkan' }}</button>
+                    </form>
+                    <a class="admin-article-edit" href="{{ route('admin.articles.edit', $article) }}">Edit artikel</a>
+                    <form method="POST" action="{{ route('admin.articles.destroy', $article) }}" onsubmit="return confirm('Hapus artikel ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="admin-article-delete" type="submit">Hapus</button>
+                    </form>
+                </div>
+            </article>
+        @empty
+            <div class="admin-article-empty">
+                <span aria-hidden="true">✎</span>
+                <h2>{{ $statusFilter === 'all' ? 'Belum ada artikel' : 'Belum ada artikel di bagian ini' }}</h2>
+                <p>
+                    @if ($statusFilter === 'draft')
+                        Artikel Draft yang Anda simpan akan muncul di sini.
+                    @else
+                        Mulai dengan menulis artikel pertama untuk halaman Blog.
+                    @endif
+                </p>
+                @if ($statusFilter !== 'published')
+                    <a class="admin-button" href="{{ route('admin.articles.create') }}">Tulis artikel</a>
+                @endif
+            </div>
+        @endforelse
     </div>
-    {{ $articles->links() }}
+
+    <div class="admin-article-pagination">{{ $articles->links() }}</div>
 @endsection

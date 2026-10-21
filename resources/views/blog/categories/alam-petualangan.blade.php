@@ -15,7 +15,7 @@
             'image' => $c('category.nature.image'),
             'image_alt' => $c('category.nature.image_alt'),
             'image_caption' => $c('category.nature.image_caption'),
-            'paragraphs' => preg_split('/\r\n\s*\r\n|\n\s*\n/', trim($c('category.nature.body'))),
+            'body' => $c('category.nature.body'),
             'section_title' => $c('category.nature.section_title'),
             'section_intro' => $c('category.nature.section_intro'),
             'tips' => preg_split('/\r\n|\r|\n/', trim($c('category.nature.tips'))),

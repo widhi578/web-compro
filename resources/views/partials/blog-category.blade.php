@@ -1,6 +1,7 @@
 @php($c = $contentValue)
 
 <div class="ad-home blog-article-page" id="top">
+    {{-- Breadcrumb dan pengantar kategori. --}}
     <section class="blog-article-page__banner" aria-labelledby="category-title">
         <div class="shell">
             <nav class="blog-article-page__breadcrumb" aria-label="Breadcrumb">
@@ -12,10 +13,11 @@
             </nav>
             <p class="ad-index">{{ $category['eyebrow'] }}</p>
             <h1 id="category-title">{{ $category['title'] }}</h1>
-            <p>{{ $category['intro'] }}</p>
+            <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($category['intro']) !!}</div>
         </div>
     </section>
 
+    {{-- Artikel utama, tips, dan bacaan terkait. --}}
     <section class="blog-article-page__content" aria-label="Artikel {{ $category['title'] }}">
         <article class="blog-article">
             <header class="blog-article__header">
@@ -25,7 +27,7 @@
                     <span>Oleh Travel Indo</span>
                 </div>
                 <h2>{{ $category['article_title'] }}</h2>
-                <p class="blog-article__lead">{{ $category['lead'] }}</p>
+                <div class="blog-article__lead ad-rich-copy">{!! \App\Support\RichText::sanitize($category['lead']) !!}</div>
             </header>
 
             <figure class="blog-article__cover">
@@ -37,22 +39,20 @@
             </figure>
 
             <div class="blog-article__body">
-                @foreach ($category['paragraphs'] as $paragraph)
-                    <p>{{ $paragraph }}</p>
-                @endforeach
+                {!! \App\Support\RichText::sanitize($category['body']) !!}
 
                 <h3>{{ $category['section_title'] }}</h3>
-                <p>{{ $category['section_intro'] }}</p>
+                <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($category['section_intro']) !!}</div>
                 <ul>
                     @foreach ($category['tips'] as $tip)
                         <li>{{ $tip }}</li>
                     @endforeach
                 </ul>
-                <p>{{ $category['closing'] }}</p>
+                <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($category['closing']) !!}</div>
 
                 <aside class="blog-article__note">
                     <strong>{{ $c('shared.article.note_title') }}</strong>
-                    <p>{{ $c('shared.article.note') }}</p>
+                    <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($c('shared.article.note')) !!}</div>
                 </aside>
             </div>
         </article>
@@ -77,7 +77,7 @@
                         <div>
                             <span>{{ $story['label'] }}</span>
                             <h3>{{ $story['title'] }}</h3>
-                            <p>{{ $story['excerpt'] }}</p>
+                            <div class="ad-rich-copy">{!! \App\Support\RichText::sanitize($story['excerpt']) !!}</div>
                         </div>
                     </article>
                 @endforeach

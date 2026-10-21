@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Travel Indo')</title>
-    <meta name="description" content="Travel Indo — perjalanan Indonesia yang dirancang lebih terasa.">
+    <meta
+        name="description"
+        content="Travel Indo — perjalanan Indonesia yang dirancang lebih terasa."
+    >
+
+    {{-- Font dan stylesheet utama website. --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
+    {{-- Navigasi utama dan submenu kategori layanan. --}}
     <header class="site-header">
         <div class="site-nav shell">
             <a class="brand" href="{{ route('home') }}" aria-label="Travel Indo, beranda">
@@ -29,7 +38,11 @@
                 <span></span>
             </button>
 
-            <nav class="site-nav__links" id="primary-navigation" aria-label="Navigasi utama">
+            <nav
+                class="site-nav__links"
+                id="primary-navigation"
+                aria-label="Navigasi utama"
+            >
                 <ul>
                     <li>
                         <a
@@ -49,8 +62,17 @@
                         <div class="site-nav__services-link">
                             <a
                                 href="{{ route('services') }}"
-                                @class(['is-active' => request()->routeIs('services', 'blog.nature', 'blog.culture', 'blog.tips')])
-                                @if (request()->routeIs('services', 'blog.nature', 'blog.culture', 'blog.tips')) aria-current="page" @endif
+                                @class([
+                                    'is-active' => request()->routeIs(
+                                        'services',
+                                        'blog.nature',
+                                        'blog.culture',
+                                        'blog.tips',
+                                    ),
+                                ])
+                                @if (request()->routeIs('services', 'blog.nature', 'blog.culture', 'blog.tips'))
+                                    aria-current="page"
+                                @endif
                             >Our Services</a>
                             <button
                                 class="site-nav__submenu-toggle"
@@ -62,9 +84,10 @@
                                 <span aria-hidden="true"></span>
                             </button>
                         </div>
+
                         <ul class="site-nav__submenu" id="services-submenu" aria-label="Kategori layanan">
-                            <li><a href="{{ route('blog.nature') }}">Alam & Petualangan</a></li>
-                            <li><a href="{{ route('blog.culture') }}">Budaya & Rasa Lokal</a></li>
+                            <li><a href="{{ route('blog.nature') }}">Alam &amp; Petualangan</a></li>
+                            <li><a href="{{ route('blog.culture') }}">Budaya &amp; Rasa Lokal</a></li>
                             <li><a href="{{ route('blog.tips') }}">Tips Perjalanan</a></li>
                         </ul>
                     </li>
@@ -90,11 +113,15 @@
                         >Blog</a>
                     </li>
                 </ul>
-                <a class="button button--nav" style="color: #fff;" href="{{ route('contact') }}">Konsultasi <span aria-hidden="true">↗</span></a>
+
+                <a class="button button--nav" href="{{ route('contact') }}">
+                    Konsultasi <span aria-hidden="true">&#8599;</span>
+                </a>
             </nav>
         </div>
     </header>
 
+    {{-- Konten halaman diisi oleh view turunan. --}}
     <main>
         @yield('content')
     </main>
