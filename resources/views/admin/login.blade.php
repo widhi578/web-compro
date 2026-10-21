@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Masuk Admin — Travel Indo')
+@section('title', 'Login Admin - Travel Indo')
 
 @section('content')
     <section class="admin-login">
@@ -21,5 +21,6 @@
             </label>
             <button class="admin-button" type="submit">Masuk</button>
         </form>
+        <a class="admin-login__back" href="{{ route('home') }}">← Kembali ke website Travel Indo</a>
     </section>
 @endsection

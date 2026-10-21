@@ -87,3 +87,31 @@ h2 { margin: 0 0 20px; font-family: Georgia, serif; font-size: 22px; font-weight
     .admin-page-grid { grid-template-columns: 1fr; }
     .admin-card { padding: 18px; }
 }
+
+/* Polesan visual panel agar seirama dengan situs publik. */
+.admin-header { min-height: 72px; }
+.admin-shell { min-height: calc(100vh - 72px); }
+.admin-main { padding-top: 48px; }
+.admin-main--login { display: grid; width: min(100%, 560px); align-content: center; margin: auto; }
+.admin-shell--guest { display: block; width: 100%; min-height: calc(100vh - 72px); }
+.admin-shell--guest .admin-main--login { display: grid; width: 100%; min-height: calc(100vh - 72px); grid-template-columns: minmax(0, 560px); justify-content: center; align-content: center; padding: 48px 24px; }
+.admin-login { width: 100%; min-width: 0; }
+h1, h2 { font-family: "Playfair Display", Georgia, serif; }
+.admin-login { position: relative; overflow: hidden; padding: clamp(28px, 5vw, 48px); box-shadow: 0 24px 70px rgba(23,42,36,.08); }
+.admin-login::before { position: absolute; top: 0; right: 0; left: 0; height: 4px; content: ""; background: linear-gradient(90deg, var(--admin-green), var(--admin-coral)); }
+.admin-login h1 { font-size: clamp(30px, 4vw, 38px); }
+.admin-login .admin-form { margin-top: 28px; }
+.admin-login input { min-height: 48px; border-radius: 2px; }
+.admin-login .admin-button { min-height: 48px; margin-top: 4px; }
+.admin-login__back { display: inline-flex; margin-top: 22px; color: #68736d; font-size: 12px; }
+.admin-login__back:hover { color: var(--admin-coral); }
+.admin-page-grid a { transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
+.admin-page-grid a:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(23,42,36,.06); }
+.admin-header__actions a:hover { color: var(--admin-coral); }
+a:focus-visible, button:focus-visible { outline: 3px solid rgba(232,110,80,.4); outline-offset: 3px; }
+@media (max-width: 760px) {
+    .admin-shell { min-height: calc(100vh - 60px); }
+    .admin-main--login { min-height: calc(100vh - 60px); }
+    .admin-shell--guest, .admin-shell--guest .admin-main--login { min-height: calc(100vh - 60px); }
+    .admin-shell--guest .admin-main--login { padding: 28px 16px; }
+}

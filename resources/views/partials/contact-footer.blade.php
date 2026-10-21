@@ -24,7 +24,7 @@
     <div class="shell ad-footer__top">
         <div><a class="ad-footer__brand" href="{{ route('home') }}">TRAVEL<span>INDO</span></a><p>{{ $c('shared.brand.tagline') }}</p></div>
         <div><p>RUTE POPULER</p><address>{!! nl2br(e($c('shared.footer.popular_routes'))) !!}</address></div>
-        <div class="ad-footer__menu"><p>MENU</p><a href="{{ route('about') }}">Tentang kami</a><a href="{{ route('home') }}#layanan">Spesialisasi</a><a href="{{ route('home') }}#galeri">Galeri</a><a href="{{ route('home') }}#konsultasi">Konsultasi</a></div>
+        <div class="ad-footer__menu"><p>MENU</p><a href="{{ route('about') }}">Tentang kami</a><a href="{{ route('home') }}#layanan">Spesialisasi</a><a href="{{ route('home') }}#galeri">Galeri</a><a href="{{ route('home') }}#konsultasi">Konsultasi</a><a href="{{ route('admin.login') }}">Login Admin</a></div>
         <div><p>KONTAK</p><a href="https://wa.me/{{ $whatsAppNumber }}" target="_blank" rel="noopener noreferrer">WhatsApp · {{ $c('shared.contact.phone') }}</a></div>
     </div>
     <div class="shell ad-footer__bottom"><span>© {{ date('Y') }} Travel Indo</span><a href="#top">Kembali ke atas ↑</a></div>

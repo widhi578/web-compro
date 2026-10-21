@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin Travel Indo')</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body class="admin-body">
@@ -19,7 +22,7 @@
             @endauth
         </div>
     </header>
-    <div class="admin-shell">
+    <div class="admin-shell @guest admin-shell--guest @endguest">
         @auth
             <aside class="admin-sidebar" aria-label="Menu admin">
                 <a href="{{ route('admin.dashboard') }}">Ringkasan</a>
