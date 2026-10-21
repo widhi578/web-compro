@@ -4,23 +4,28 @@
 
 @section('content')
     <section class="admin-login">
+        <div class="admin-login__brand" aria-label="Travel Indo Admin">
+            <!-- <span class="admin-login__mark" aria-hidden="true">TI</span> -->
+            <span>TRAVEL<span>INDO</span><small>ADMIN PANEL</small></span>
+        </div>
         <p class="admin-eyebrow">AREA TERBATAS</p>
-        <h1>Masuk ke panel admin</h1>
-        <p>Gunakan akun admin Travel Indo untuk mengelola konten website.</p>
+        <h1>Selamat datang kembali</h1>
+        <p>Masuk untuk mengelola konten Travel Indo dengan mudah.</p>
         <form method="POST" action="{{ route('admin.login.store') }}" class="admin-form">
             @csrf
             <label>
                 Email
-                <input type="email" name="email" value="{{ old('email') }}" autocomplete="username" required autofocus>
+                <input type="email" name="email" value="{{ old('email') }}" placeholder="nama@email.com" autocomplete="username" required autofocus>
                 @error('email') <span class="admin-error">{{ $message }}</span> @enderror
             </label>
             <label>
                 Kata sandi
-                <input type="password" name="password" autocomplete="current-password" required>
+                <input type="password" name="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required>
                 @error('password') <span class="admin-error">{{ $message }}</span> @enderror
             </label>
-            <button class="admin-button" type="submit">Masuk</button>
+            <button class="admin-button" type="submit">Masuk ke panel <span aria-hidden="true">&rarr;</span></button>
         </form>
+        <p class="admin-login__note"><span aria-hidden="true">&#9679;</span> Akses ini khusus untuk pengelola Travel Indo.</p>
         <a class="admin-login__back" href="{{ route('home') }}">← Kembali ke website Travel Indo</a>
     </section>
 @endsection

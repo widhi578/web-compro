@@ -1343,6 +1343,13 @@ $addFields('tips', [
     ],
 ]);
 
+// Bagian ini tetap memakai nilai konten bawaan, tetapi tidak perlu ditampilkan
+// sebagai isian yang dapat diedit di panel admin.
+unset(
+    $pages['home']['groups']['Spesialisasi'],
+    $pages['home']['groups']['Mengapa Kami'],
+);
+
 return [
     'pages' => $pages,
     'defaults' => $defaults,

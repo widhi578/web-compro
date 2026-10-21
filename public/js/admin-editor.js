@@ -1,4 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Perbarui jam dashboard mengikuti waktu Indonesia bagian barat.
+    const adminClock = document.querySelector('[data-admin-clock]');
+    const adminDate = document.querySelector('[data-admin-date]');
+    if (adminClock && adminDate) {
+        const updateAdminClock = () => {
+            const now = new Date();
+            adminClock.textContent = new Intl.DateTimeFormat('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hourCycle: 'h23',
+            }).format(now);
+            adminDate.textContent = new Intl.DateTimeFormat('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+            }).format(now);
+        };
+
+        updateAdminClock();
+        window.setInterval(updateAdminClock, 1000);
+    }
+
+    // Gunakan dialog yang tampil di halaman untuk konfirmasi penghapusan artikel.
+    const deleteDialog = document.querySelector('[data-confirm-dialog]');
+    if (deleteDialog) {
+        let pendingDeleteForm = null;
+        const message = deleteDialog.querySelector('[data-confirm-message]');
+
+        document.querySelectorAll('[data-delete-form]').forEach((form) => {
+            form.addEventListener('submit', (event) => {
+                if (form.dataset.confirmed === 'true') {
+                    delete form.dataset.confirmed;
+                    return;
+                }
+
+                event.preventDefault();
+                pendingDeleteForm = form;
+                const title = form.dataset.articleTitle;
+                message.textContent = title
+                    ? `Artikel “${title}” akan dihapus dan tidak dapat dipulihkan.`
+                    : 'Artikel yang dihapus tidak dapat dipulihkan.';
+                deleteDialog.showModal();
+            });
+        });
+
+        const clearPendingForm = () => {
+            pendingDeleteForm = null;
+        };
+
+        deleteDialog.querySelector('[data-confirm-cancel]').addEventListener('click', () => {
+            deleteDialog.close();
+            clearPendingForm();
+        });
+
+        deleteDialog.addEventListener('cancel', clearPendingForm);
+        deleteDialog.querySelector('[data-confirm-accept]').addEventListener('click', () => {
+            if (!pendingDeleteForm) return;
+
+            const form = pendingDeleteForm;
+            clearPendingForm();
+            form.dataset.confirmed = 'true';
+            deleteDialog.close();
+            form.requestSubmit();
+        });
+    }
+
     // Tampilkan nama berkas yang dipilih pengguna.
     document.querySelectorAll('[data-file-input]').forEach((input) => {
         const fileName = input.closest('.admin-upload')?.querySelector('[data-file-name]');

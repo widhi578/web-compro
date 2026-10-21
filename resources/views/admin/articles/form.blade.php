@@ -200,14 +200,17 @@
 
         {{-- Status menentukan apakah artikel langsung tampil di website. --}}
         <input type="hidden" name="is_published" value="0">
-        <label class="admin-checkbox">
+        <label class="admin-checkbox admin-checkbox--publish">
             <input
                 type="checkbox"
                 name="is_published"
                 value="1"
                 @checked(old('is_published', $article->is_published))
             >
-            Terbitkan artikel agar langsung tampil di halaman Blog
+            <span class="admin-checkbox__copy">
+                <strong>Terbitkan artikel</strong>
+                <small>Artikel langsung tampil di halaman Blog setelah disimpan.</small>
+            </span>
         </label>
         @error('is_published')
             <span class="admin-error">{{ $message }}</span>

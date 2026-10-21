@@ -14,6 +14,7 @@ class DashboardController extends Controller
             'articleCount' => Article::count(),
             'publishedCount' => Article::where('is_published', true)->count(),
             'contentCount' => count(config('cms.pages')),
+            'publicSiteActive' => ! app()->isDownForMaintenance(),
         ]);
     }
 }

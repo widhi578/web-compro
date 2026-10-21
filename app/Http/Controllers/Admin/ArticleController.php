@@ -91,7 +91,7 @@ class ArticleController extends Controller
         $this->deleteManagedImage($article->image);
         $article->delete();
 
-        return redirect()->route('admin.articles.index')->with('status', 'Artikel berhasil dihapus.');
+        return redirect()->route('admin.articles.index');
     }
 
     public function toggleStatus(Article $article): RedirectResponse

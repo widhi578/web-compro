@@ -1967,7 +1967,7 @@ img {
 }
 
 .ad-footer__brand span {
-    color: var(--ad-lime);
+    color: var(--coral);
 }
 
 .ad-footer__top > div > p {
@@ -1979,7 +1979,7 @@ img {
 
 .ad-footer__top > div:not(:first-child) > p {
     margin: 0 0 13px;
-    color: var(--ad-lime);
+    color: var(--coral);
     font-size: 9px;
     font-weight: 700;
     letter-spacing: .1em;

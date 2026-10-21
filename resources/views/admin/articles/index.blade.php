@@ -55,7 +55,7 @@
                         <button class="admin-status-toggle" type="submit">{{ $article->is_published ? 'Jadikan draft' : 'Terbitkan' }}</button>
                     </form>
                     <a class="admin-article-edit" href="{{ route('admin.articles.edit', $article) }}">Edit artikel</a>
-                    <form method="POST" action="{{ route('admin.articles.destroy', $article) }}" onsubmit="return confirm('Hapus artikel ini?')">
+                    <form method="POST" action="{{ route('admin.articles.destroy', $article) }}" data-delete-form data-article-title="{{ $article->title }}">
                         @csrf
                         @method('DELETE')
                         <button class="admin-article-delete" type="submit">Hapus</button>
@@ -81,4 +81,17 @@
     </div>
 
     <div class="admin-article-pagination">{{ $articles->links() }}</div>
+
+    {{-- Dialog konfirmasi penghapusan artikel. --}}
+    <dialog class="admin-confirm" data-confirm-dialog aria-labelledby="admin-confirm-title">
+        <div class="admin-confirm__content">
+            <span class="admin-eyebrow">KONFIRMASI</span>
+            <h2 id="admin-confirm-title">Hapus artikel?</h2>
+            <p data-confirm-message>Artikel yang dihapus tidak dapat dipulihkan.</p>
+            <div class="admin-confirm__actions">
+                <button class="admin-confirm__cancel" type="button" data-confirm-cancel>Batalkan</button>
+                <button class="admin-confirm__accept" type="button" data-confirm-accept>Ya, hapus artikel</button>
+            </div>
+        </div>
+    </dialog>
 @endsection
