@@ -9,6 +9,48 @@
 
 ## Panel Admin Travel Indo
 
+## Menjalankan proyek di laptop lain
+
+Kebutuhan: Git, PHP 8.2 atau lebih baru, Composer, Node.js/NPM, serta MySQL
+(Laragon sudah menyediakan PHP dan MySQL untuk Windows).
+
+```sh
+git clone <alamat-repository-GitHub>
+cd web-compro
+composer install
+npm install
+copy .env.example .env
+php artisan key:generate
+npm run build
+```
+
+Buat database MySQL bernama `travel_indo` melalui Laragon atau HeidiSQL. Untuk
+konfigurasi Laragon bawaan, pengaturan database pada `.env` sudah sesuai. Jika
+komputer teman memakai nama database, username, atau password lain, ubah bagian
+`DB_*` di file `.env` miliknya.
+
+Untuk membuat tabel dan konten contoh:
+
+```sh
+php artisan migrate --seed
+php artisan admin:create admin@example.com "Nama Admin"
+php artisan serve
+```
+
+Buka `http://127.0.0.1:8000`, lalu gunakan `/admin/login` untuk panel admin.
+Perintah `admin:create` akan meminta kata sandi secara aman di terminal.
+
+### Membawa data website yang sudah ada
+
+File `.env`, kata sandi, dan isi database tidak diunggah ke GitHub. Bila teman
+harus meneruskan website dengan artikel, teks, akun admin, dan perubahan yang
+sudah Anda buat, ekspor database `travel_indo` dari HeidiSQL sebagai file SQL.
+Simpan file tersebut di tempat privat, misalnya Google Drive, lalu teman
+mengimpornya ke database `travel_indo` di laptopnya. Setelah itu cukup jalankan
+`composer install`, `npm install`, `php artisan key:generate`, dan `npm run build`.
+
+Jangan unggah file `.env` atau file SQL berisi data produksi ke repository publik.
+
 Jalankan migrasi dan seed konten awal, lalu buat akun admin:
 
 ```sh
