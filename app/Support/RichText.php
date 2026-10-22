@@ -31,7 +31,7 @@ class RichText
         $previous = libxml_use_internal_errors(true);
         $document->loadHTML(
             '<?xml encoding="UTF-8"><div id="richtext-root">'.$html.'</div>',
-            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD,
+            LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD | LIBXML_NONET,
         );
         libxml_clear_errors();
         libxml_use_internal_errors($previous);

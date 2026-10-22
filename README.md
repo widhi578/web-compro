@@ -65,6 +65,38 @@ membuat, mengedit, menerbitkan, atau menghapus artikel dari panel. Gambar dapat
 diunggah (JPG, PNG, atau WebP, maksimal 10 MB) atau menggunakan URL HTTP/HTTPS.
 Pastikan `public/uploads` dapat ditulisi oleh aplikasi di server produksi.
 
+### Keamanan produksi
+
+Website sudah mengirimkan header keamanan (CSP, anti-clickjacking, `nosniff`,
+policy referrer, dan pembatasan fitur browser) melalui middleware global.
+Halaman `/admin` juga tidak boleh disimpan oleh cache browser maupun proxy.
+
+Sebelum rilis, ubah `.env` produksi menjadi `APP_ENV=production` dan
+`APP_DEBUG=false`. Setelah domain dan semua subdomain sudah selalu menggunakan
+HTTPS, aktifkan `SESSION_SECURE_COOKIE=true` dan
+`SECURITY_HSTS_ENABLED=true`, lalu jalankan `php artisan config:cache`.
+Jangan aktifkan HSTS pada server lokal atau domain yang masih dapat diakses
+melalui HTTP.
+
+Folder `public/uploads` sudah memiliki aturan Apache untuk mencegah eksekusi
+berkas skrip. Jika memakai Nginx, terapkan aturan setara pada konfigurasi
+server: tolak ekstensi skrip (`php`, `phtml`, `phar`, `cgi`, dan sejenisnya)
+di bawah `/uploads/`, serta nonaktifkan directory listing.
+
+### Web Resource Management (WRM)
+
+Aset yang dipakai situs—CSS, JavaScript, ikon WhatsApp, dan koneksi font—
+dikelola melalui registry `config/web-resources.php`. Panggil aset dari Blade
+dengan `$webResources->url('nama-aset')`, bukan `asset()` langsung. URL aset
+lokal otomatis memperoleh parameter versi berdasarkan waktu perubahan berkas.
+Dengan demikian browser dapat menyimpannya hingga satu tahun, tetapi langsung
+mengunduh versi baru ketika berkas berubah.
+
+Untuk menambah aset baru, daftarkan dahulu di `config/web-resources.php`, lalu
+gunakan nama tersebut di view. Konfigurasi Apache pada `public/.htaccess`
+mengaktifkan cache immutable dan kompresi untuk aset statis; konfigurasi Nginx
+di produksi perlu menerapkan header cache dan gzip/brotli yang setara.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

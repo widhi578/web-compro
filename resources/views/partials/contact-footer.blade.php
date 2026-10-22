@@ -114,5 +114,5 @@
     rel="noopener noreferrer"
     aria-label="Hubungi Travel Indo melalui WhatsApp"
 >
-    <img src="{{ asset('assets/whatsapp.png') }}" alt="">
+    <img src="{{ $webResources->url('whatsapp-icon') }}" alt="">
 </a>

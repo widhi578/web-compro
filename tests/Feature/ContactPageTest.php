@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Support\WebResourceManager;
 use Tests\TestCase;
 
 class ContactPageTest extends TestCase
@@ -22,7 +23,7 @@ class ContactPageTest extends TestCase
             ->assertSee('https://maps.google.com/maps?', false)
             ->assertSee('Buka di Google Maps')
             ->assertSee('class="ad-whatsapp-float"', false)
-            ->assertSee('src="'.asset('assets/whatsapp.png').'"', false)
+            ->assertSee('src="'.app(WebResourceManager::class)->url('whatsapp-icon').'"', false)
             ->assertSee('alt=""', false)
             ->assertSee('Contact Us</a>', false)
             ->assertDontSee('<form', false)

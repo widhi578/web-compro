@@ -6,13 +6,14 @@
     <title>@yield('title', 'Admin Travel Indo')</title>
 
     {{-- Font dan stylesheet panel admin. --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    @foreach ($webResources->preconnects() as $preconnect)
+        <link rel="preconnect" href="{{ $preconnect['href'] }}" @if ($preconnect['crossorigin']) crossorigin @endif>
+    @endforeach
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        href="{{ $webResources->fontStylesheet() }}"
         rel="stylesheet"
     >
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ $webResources->url('admin-styles') }}">
 </head>
 <body class="admin-body">
     {{-- Header panel dengan akses ke website publik. --}}
@@ -99,6 +100,6 @@
         </main>
     </div>
 
-    <script src="{{ asset('js/admin-editor.js') }}" defer></script>
+    <script src="{{ $webResources->url('admin-scripts') }}" defer></script>
 </body>
 </html>
