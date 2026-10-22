@@ -20,7 +20,19 @@
             </label>
             <label>
                 Kata sandi
-                <input type="password" name="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required>
+                <span class="admin-password-field">
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Masukkan kata sandi"
+                        autocomplete="current-password"
+                        data-password-input
+                        required
+                    >
+                    <button type="button" data-password-toggle aria-label="Tampilkan kata sandi" aria-pressed="false">
+                        Lihat
+                    </button>
+                </span>
                 @error('password') <span class="admin-error">{{ $message }}</span> @enderror
             </label>
             <button class="admin-button" type="submit">Masuk ke panel <span aria-hidden="true">&rarr;</span></button>

@@ -738,6 +738,35 @@ h2 {
     color: #9aa79f;
 }
 
+.admin-password-field {
+    position: relative;
+    display: block;
+}
+
+.admin-login .admin-password-field input {
+    padding-right: 104px;
+}
+
+.admin-password-field button {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    min-height: 34px;
+    padding: 0 10px;
+    color: var(--admin-green);
+    background: var(--admin-soft-green, #f1f8f5);
+    border: 0;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.admin-password-field button:hover {
+    background: #dfeee5;
+}
+
 .admin-login .admin-button {
     display: flex;
     justify-content: center;

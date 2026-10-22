@@ -62,7 +62,7 @@ php artisan admin:create admin@example.com "Nama Admin"
 Perintah pembuatan admin meminta kata sandi secara interaktif. Setelah itu, masuk
 melalui `/admin/login`. Admin dapat mengubah teks dan gambar halaman, serta
 membuat, mengedit, menerbitkan, atau menghapus artikel dari panel. Gambar dapat
-diunggah (JPG, PNG, atau WebP, maksimal 20 MB) atau menggunakan URL HTTP/HTTPS.
+diunggah (JPG, PNG, atau WebP, maksimal 10 MB) atau menggunakan URL HTTP/HTTPS.
 Pastikan `public/uploads` dapat ditulisi oleh aplikasi di server produksi.
 
 ## About Laravel

@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Beri pilihan untuk melihat atau menyembunyikan kata sandi pada halaman login.
+    document.querySelectorAll('[data-password-toggle]').forEach((button) => {
+        const input = button.closest('.admin-password-field')?.querySelector('[data-password-input]');
+        if (!input) return;
+
+        button.addEventListener('click', () => {
+            const showPassword = input.type === 'password';
+            input.type = showPassword ? 'text' : 'password';
+            button.textContent = showPassword ? 'Sembunyikan' : 'Lihat';
+            button.setAttribute('aria-pressed', String(showPassword));
+            button.setAttribute('aria-label', showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi');
+            input.focus({ preventScroll: true });
+        });
+    });
+
     // Perbarui jam dashboard mengikuti waktu Indonesia bagian barat.
     const adminClock = document.querySelector('[data-admin-clock]');
     const adminDate = document.querySelector('[data-admin-date]');

@@ -47,7 +47,7 @@ class ContentController extends Controller
 
         foreach ($fields->where('type', 'image') as $key => $field) {
             $escapedKey = str_replace('.', '\\.', $key);
-            $rules["image_uploads.{$escapedKey}"] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:20480'];
+            $rules["image_uploads.{$escapedKey}"] = ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'];
         }
 
         $validated = $request->validate($rules);

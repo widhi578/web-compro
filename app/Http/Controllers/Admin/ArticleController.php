@@ -117,7 +117,7 @@ class ArticleController extends Controller
             'image_alt' => ['nullable', 'string', 'max:250'],
             'reading_time' => ['required', 'string', 'max:40'],
             'is_published' => ['required', 'boolean'],
-            'image' => [$article ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:20480'],
+            'image' => [$article ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:10240'],
         ]);
 
         $data['is_published'] = $request->boolean('is_published');
