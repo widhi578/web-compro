@@ -92,6 +92,9 @@ lokal otomatis memperoleh parameter versi berdasarkan waktu perubahan berkas.
 Dengan demikian browser dapat menyimpannya hingga satu tahun, tetapi langsung
 mengunduh versi baru ketika berkas berubah.
 
+Favicon Travel Indo berada di `public/assets/travel-indo-favicon.svg` dan
+dipanggil dari registry yang sama. Jangan gunakan favicon kosong bawaan Laravel.
+
 Untuk menambah aset baru, daftarkan dahulu di `config/web-resources.php`, lalu
 gunakan nama tersebut di view. Konfigurasi Apache pada `public/.htaccess`
 mengaktifkan cache immutable dan kompresi untuk aset statis; konfigurasi Nginx

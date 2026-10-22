@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin Travel Indo')</title>
+    <link rel="icon" href="{{ $webResources->url('site-favicon') }}" type="image/svg+xml">
 
     {{-- Font dan stylesheet panel admin. --}}
     @foreach ($webResources->preconnects() as $preconnect)

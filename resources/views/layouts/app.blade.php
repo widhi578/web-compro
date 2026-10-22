@@ -9,6 +9,8 @@
         content="Travel Indo — perjalanan Indonesia yang dirancang lebih terasa."
     >
 
+    <link rel="icon" href="{{ $webResources->url('site-favicon') }}" type="image/svg+xml">
+
     {{-- Font dan stylesheet utama website. --}}
     @foreach ($webResources->preconnects() as $preconnect)
         <link rel="preconnect" href="{{ $preconnect['href'] }}" @if ($preconnect['crossorigin']) crossorigin @endif>

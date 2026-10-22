@@ -8,6 +8,7 @@ return [
         'public-scripts' => ['path' => 'js/scripts.js', 'as' => 'script'],
         'admin-scripts' => ['path' => 'js/admin-editor.js', 'as' => 'script'],
         'whatsapp-icon' => ['path' => 'assets/whatsapp.png', 'as' => 'image'],
+        'site-favicon' => ['path' => 'assets/travel-indo-favicon.svg', 'as' => 'image'],
     ],
 
     'fonts' => [
