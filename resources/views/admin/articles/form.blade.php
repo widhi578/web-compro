@@ -149,13 +149,14 @@
         </div>
 
         {{-- Foto utama dan keterangan aksesibilitasnya. --}}
-        @if ($article->image)
-            <img
-                class="admin-image-preview"
-                src="{{ $article->image }}"
-                alt="Pratinjau foto artikel"
-            >
-        @endif
+        <img
+            id="article-image-preview"
+            class="admin-image-preview"
+            src="{{ $article->image }}"
+            alt="Pratinjau foto artikel"
+            @unless($article->image) hidden @endunless
+            data-image-preview
+        >
 
         <label class="admin-field">
             <span>{{ $article->exists ? 'Ganti foto utama (opsional)' : 'Foto utama' }}</span>
@@ -163,6 +164,8 @@
                 type="file"
                 name="image"
                 accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                data-file-input
+                data-preview-target="article-image-preview"
                 @required(!$article->exists)
             >
             <span class="admin-help">JPG, PNG, atau WebP; maksimal 10 MB.</span>

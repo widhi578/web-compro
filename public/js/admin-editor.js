@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const showPassword = input.type === 'password';
             input.type = showPassword ? 'text' : 'password';
-            button.textContent = showPassword ? 'Sembunyikan' : 'Lihat';
+            button.classList.toggle('is-visible', showPassword);
             button.setAttribute('aria-pressed', String(showPassword));
             button.setAttribute('aria-label', showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi');
             input.focus({ preventScroll: true });
@@ -87,9 +87,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tampilkan nama berkas yang dipilih pengguna.
     document.querySelectorAll('[data-file-input]').forEach((input) => {
         const fileName = input.closest('.admin-upload')?.querySelector('[data-file-name]');
+        const preview = input.dataset.previewTarget
+            ? document.getElementById(input.dataset.previewTarget)
+            : null;
 
         input.addEventListener('change', () => {
-            fileName.textContent = input.files?.[0]?.name || 'Belum ada file dipilih';
+            if (fileName) {
+                fileName.textContent = input.files?.[0]?.name || 'Belum ada file dipilih';
+            }
+
+            const [file] = input.files || [];
+            if (!preview || !file) return;
+
+            if (preview.dataset.objectUrl) {
+                URL.revokeObjectURL(preview.dataset.objectUrl);
+            }
+
+            const objectUrl = URL.createObjectURL(file);
+            preview.src = objectUrl;
+            preview.dataset.objectUrl = objectUrl;
+            preview.hidden = false;
         });
     });
 

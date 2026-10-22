@@ -30,7 +30,13 @@
                         required
                     >
                     <button type="button" data-password-toggle aria-label="Tampilkan kata sandi" aria-pressed="false">
-                        Lihat
+                        <svg class="admin-password-field__eye" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z" />
+                            <circle cx="12" cy="12" r="2.8" />
+                        </svg>
+                        <svg class="admin-password-field__eye-off" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m3 3 18 18M10.6 6.2A10.9 10.9 0 0 1 12 6c6.2 0 9.5 6 9.5 6a17.3 17.3 0 0 1-3.2 3.8M6.1 6.1A17.2 17.2 0 0 0 2.5 12S5.8 18 12 18c1.1 0 2.1-.2 3-.5M9.9 9.9a3 3 0 0 0 4.2 4.2" />
+                        </svg>
                     </button>
                 </span>
                 @error('password') <span class="admin-error">{{ $message }}</span> @enderror

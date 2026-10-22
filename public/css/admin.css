@@ -394,6 +394,13 @@ h2 {
     max-height: 190px;
     object-fit: cover;
     background: #eee;
+    border: 1px solid #d6e2da;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(25, 61, 50, .08);
+}
+
+.admin-image-preview[hidden] {
+    display: none;
 }
 
 .admin-error {
@@ -751,16 +758,36 @@ h2 {
     position: absolute;
     top: 50%;
     right: 8px;
-    min-height: 34px;
-    padding: 0 10px;
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    padding: 0;
     color: var(--admin-green);
     background: var(--admin-soft-green, #f1f8f5);
     border: 0;
     border-radius: 5px;
-    font-size: 11px;
-    font-weight: 700;
     cursor: pointer;
     transform: translateY(-50%);
+}
+
+.admin-password-field button svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.admin-password-field__eye-off,
+.admin-password-field button.is-visible .admin-password-field__eye {
+    display: none;
+}
+
+.admin-password-field button.is-visible .admin-password-field__eye-off {
+    display: block;
 }
 
 .admin-password-field button:hover {
@@ -2351,5 +2378,154 @@ a:focus-visible, button:focus-visible {
 
     .admin-page-grid a {
         min-height: 96px;
+    }
+}
+
+/* Tata letak layar kecil: setiap bagian tetap lega tanpa membuat kartu terlalu tinggi. */
+@media (max-width: 760px) {
+    .admin-body {
+        overflow-x: hidden;
+    }
+
+    .admin-shell,
+    .admin-main {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .admin-shell {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .admin-main {
+        grid-column: 1;
+    }
+
+    .admin-main {
+        padding: 24px 14px 48px;
+    }
+
+    .admin-dashboard-heading {
+        gap: 12px;
+    }
+
+    .admin-dashboard-heading h1 {
+        margin-bottom: 8px;
+        font-size: clamp(29px, 9vw, 34px);
+        line-height: 1.08;
+    }
+
+    .admin-dashboard-heading .admin-intro {
+        margin-top: 0;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .admin-dashboard-preview {
+        min-height: 44px;
+    }
+
+    .admin-live-status {
+        gap: 14px;
+        margin: 20px 0;
+        padding: 16px;
+    }
+
+    .admin-live-status__clock {
+        gap: 2px;
+        padding-bottom: 14px;
+    }
+
+    .admin-live-status__clock strong {
+        font-size: 29px;
+    }
+
+    .admin-live-status__items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .admin-live-status__items > div {
+        min-height: 92px;
+        gap: 8px;
+        padding: 11px 9px;
+    }
+
+    .admin-live-status__items strong {
+        font-size: 11px;
+        line-height: 1.35;
+    }
+
+    .admin-live-status__items small {
+        font-size: 9px;
+        line-height: 1.35;
+    }
+
+    .admin-welcome {
+        border-radius: 8px;
+    }
+
+    .admin-welcome > div {
+        min-height: 0;
+        padding: 15px 14px;
+    }
+
+    .admin-welcome p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .admin-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 20px 0 32px;
+    }
+
+    .admin-stats article {
+        min-height: 82px;
+        grid-template-columns: 38px 70px minmax(0, 1fr);
+        align-items: center;
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .admin-stats article::after {
+        width: 50px;
+        height: 50px;
+        right: -15px;
+        bottom: -15px;
+        border-width: 10px;
+    }
+
+    .admin-stats strong {
+        font-size: 27px;
+    }
+
+    .admin-stat__icon {
+        width: 32px;
+        height: 32px;
+        margin: 0;
+    }
+
+    .admin-stats span:not(.admin-stat__icon) {
+        font-size: 12px;
+        text-align: left;
+    }
+}
+
+@media (max-width: 330px) {
+    .admin-header__actions a {
+        max-width: 78px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .admin-live-status__items {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-live-status__items > div {
+        min-height: 64px;
     }
 }

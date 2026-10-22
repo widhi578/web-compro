@@ -171,13 +171,14 @@
                             >{{ $value }}</textarea>
                         @elseif ($field['type'] === 'image')
                             {{-- Isian gambar menerima URL atau berkas lokal. --}}
-                            @if ($value)
-                                <img
-                                    class="admin-image-preview"
-                                    src="{{ $value }}"
-                                    alt="Pratinjau {{ $field['label'] }}"
-                                >
-                            @endif
+                            <img
+                                id="image-preview-{{ $loop->parent->index }}-{{ $loop->index }}"
+                                class="admin-image-preview"
+                                src="{{ $value }}"
+                                alt="Pratinjau {{ $field['label'] }}"
+                                @unless($value) hidden @endunless
+                                data-image-preview
+                            >
                             <input
                                 type="text"
                                 name="content[{{ $field['key'] }}]"
@@ -209,6 +210,7 @@
                                     aria-label="Unggah {{ $field['label'] }}"
                                     accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
                                     data-file-input
+                                    data-preview-target="image-preview-{{ $loop->parent->index }}-{{ $loop->index }}"
                                 >
                             </div>
                         @elseif ($field['type'] === 'color')
