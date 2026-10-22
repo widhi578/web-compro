@@ -186,7 +186,7 @@
                                 placeholder="URL gambar atau gambar yang diunggah"
                             >
                             <span class="admin-help">
-                                Atau unggah gambar JPG, PNG, atau WebP (maksimal 5 MB).
+                                Atau unggah gambar JPG, PNG, atau WebP (maksimal 10 MB).
                             </span>
                             <div class="admin-upload">
                                 <label

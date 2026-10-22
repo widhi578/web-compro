@@ -165,7 +165,7 @@
                 accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
                 @required(!$article->exists)
             >
-            <span class="admin-help">JPG, PNG, atau WebP; maksimal 5 MB.</span>
+            <span class="admin-help">JPG, PNG, atau WebP; maksimal 10 MB.</span>
             @error('image')
                 <span class="admin-error">{{ $message }}</span>
             @enderror
